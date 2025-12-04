@@ -11,8 +11,13 @@ let keysPressed = {}; // Track which keys are currently pressed
 let animationFrameId = null;
 
 // Birthday items to catch
-const items = ['🎂', '🎈', '🎁', '💝', '⭐', '💖', '🌸', '🦄', '🎀', '💕'];
-
+const items = [
+  '🎂', '🎈', '🎁', '💝', '⭐', '💖', '🌸', '🦄', '🎀', '💕', '💘', '💗', '💓', '💞',
+  '💐', '🌸',  '🌹', '🌺', , '🌷',
+  '🍓', '🍒', '🍑',
+  '🍭', '🍬', '🍫',
+   '🍧', '🍦'
+];
 // Initialize game
 document.addEventListener('DOMContentLoaded', () => {
   const startBtn = document.getElementById('startBtn');
@@ -94,11 +99,20 @@ function startGame() {
   score = 0;
   updateScore();
   
-  // Create falling items
+  // Create falling items more frequently
   itemInterval = setInterval(() => {
     if (!gameRunning) return;
-    createFallingItem();
-  }, 1000);
+    // Create 1-3 items at once for more excitement
+    const itemCount = Math.random() < 0.3 ? 2 : (Math.random() < 0.1 ? 3 : 1);
+    for (let i = 0; i < itemCount; i++) {
+      // Stagger items slightly so they don't all appear at once
+      setTimeout(() => {
+        if (gameRunning) {
+          createFallingItem();
+        }
+      }, i * 100);
+    }
+  }, 600); // Reduced from 1000ms to 600ms for more items
 
   // Check for collisions
   gameInterval = setInterval(() => {
@@ -116,10 +130,10 @@ function startMovementLoop() {
     
     // Smooth continuous movement
     if (keysPressed.left) {
-      moveBasket(-1); // Smaller increment for smoother movement
+      moveBasket(-2); // Smaller increment for smoother movement
     }
     if (keysPressed.right) {
-      moveBasket(1);
+      moveBasket(2);
     }
     
     animationFrameId = requestAnimationFrame(animate);
