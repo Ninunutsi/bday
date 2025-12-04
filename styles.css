@@ -1,0 +1,316 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Comic Sans MS', 'Marker Felt', cursive, sans-serif;
+  background: linear-gradient(135deg, #ff9ec7 0%, #ffb3d9 25%, #ffcce6 50%, #ffe6f2 75%, #fff0f8 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 192, 203, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 182, 193, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.game-container {
+  width: 100%;
+  max-width: 800px;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Welcome Screen */
+.welcome-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.welcome-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 50px 40px;
+  border-radius: 30px;
+  box-shadow: 0 10px 40px rgba(255, 105, 180, 0.3);
+  border: 5px solid #ff69b4;
+}
+
+.title {
+  font-size: 3.5em;
+  color: #ff1493;
+  margin-bottom: 20px;
+  text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.3);
+  animation: bounce 2s infinite;
+}
+
+.subtitle {
+  font-size: 1.5em;
+  color: #ff69b4;
+  margin-bottom: 30px;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.3em;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.start-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
+}
+
+.start-btn:active {
+  transform: scale(0.95);
+}
+
+/* Game Screen */
+.game-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 3px solid #ff69b4;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ff1493;
+}
+
+.score, .target {
+  text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.2);
+}
+
+.game-area {
+  flex: 1;
+  position: relative;
+  background: linear-gradient(to bottom, #e6f3ff 0%, #ffe6f2 100%);
+  overflow: hidden;
+  border: 5px solid #ff69b4;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.basket {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4em;
+  transition: left 0.05s linear;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+  z-index: 10;
+  cursor: pointer;
+}
+
+.falling-item {
+  position: absolute;
+  font-size: 2.5em;
+  animation: fall linear;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+  z-index: 5;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.8;
+  }
+}
+
+.instructions {
+  text-align: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #ff1493;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+/* Celebration Screen */
+.celebration-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.celebration-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 60px 50px;
+  border-radius: 30px;
+  box-shadow: 0 15px 50px rgba(255, 105, 180, 0.4);
+  border: 5px solid #ff69b4;
+  z-index: 10;
+  position: relative;
+  max-width: 600px;
+}
+
+.celebration-title {
+  font-size: 4em;
+  margin-bottom: 20px;
+  animation: bounce 1s infinite;
+}
+
+.birthday-message {
+  font-size: 3em;
+  color: #ff1493;
+  margin-bottom: 30px;
+  text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.birthday-wish {
+  font-size: 1.3em;
+  color: #ff69b4;
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.play-again-btn {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.2em;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 30px;
+  box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.play-again-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ff1493;
+  border-radius: 50%;
+  animation: confettiFall 3s linear infinite;
+}
+
+.confetti:nth-child(2n) {
+  background: #ff69b4;
+}
+
+.confetti:nth-child(3n) {
+  background: #ffb6c1;
+}
+
+.confetti:nth-child(4n) {
+  background: #ffc0cb;
+}
+
+.confetti:nth-child(5n) {
+  background: #ff1493;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .title {
+    font-size: 2.5em;
+  }
+  
+  .celebration-title {
+    font-size: 3em;
+  }
+  
+  .birthday-message {
+    font-size: 2em;
+  }
+  
+  .basket {
+    font-size: 3em;
+  }
+  
+  .falling-item {
+    font-size: 2em;
+  }
+}
+
