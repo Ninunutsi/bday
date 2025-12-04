@@ -63,6 +63,14 @@ body::before {
   animation: bounce 2s infinite;
 }
 
+.title2 {
+  font-size: 2.5em;
+  color: #ff1493;
+  margin-bottom: 20px;
+  text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.3);
+  animation: bounce 2s infinite;
+}
+
 .subtitle {
   font-size: 1.5em;
   color: #ff69b4;
